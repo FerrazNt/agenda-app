@@ -26,8 +26,7 @@ export class ContatoService {
   } 
 
   salvar(contato: Contato): Observable<Contato>{
-      console.log(contato);
-      return this.http.post<Contato>(this.url+"/novo", contato);
+      return this.http.post<any>(this.url+"/novo", contato);
   }
 
 }

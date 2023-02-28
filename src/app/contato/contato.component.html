@@ -8,16 +8,26 @@
       <mat-icon>people</mat-icon>
     </button>
   </mat-toolbar>
-  <form>
+  <form [formGroup]="formulario" (ngSubmit)="submit()">
+
     <mat-form-field class="full-width">
         <mat-label>Nome</mat-label>
-        <input type="text" matInput 
+        <input type="text"
+               formControlName="nome" 
+               matInput 
                placeholder="Ex.: Fulado de Tal">
+               <mat-error *ngIf="formulario.controls['nome'].invalid">Campo nome é obrigatório.</mat-error>
     </mat-form-field>
+ 
     <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input type="email" matInput 
+        <mat-label>E-mail</mat-label>
+        <input type="email"
+               formControlName="email" 
+               matInput 
                placeholder="Ex.: nome@email.com">
+               <mat-error *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].hasError('required')">Campo email é obrigatório.</mat-error>
+               <mat-error *ngIf="formulario.controls['email'].invalid && !formulario.controls['email'].hasError('required')">Informe um E-Mail válido.</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">Adicionar</button>
+    <button [disabled]="!formulario.valid" mat-raised-button color="primary" >Adicionar</button>
+  
   </form>

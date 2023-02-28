@@ -37,14 +37,14 @@ export class ContatoComponent implements OnInit {
     
     this.servico
           .salvar(contato)
-          .subscribe(
-            result => {
-              this.contatos.push(result);
-              console.log(result);
+          .subscribe({
+            next: (resp) => {
+              this.contatos.push(resp);
+              console.log(resp);
             },
-            erro =>{
-              console.log(erro);
+            error: (erroResp) => {
+              console.log(erroResp);
             }
-          ); 
+          }); 
   }
 }
